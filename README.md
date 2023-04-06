@@ -1,6 +1,6 @@
 # Numerical computation of 1D Scheodinger equation
 
-# Introduction
+## Introduction
 In this lecture, we will show you how to solve a Schrodinger equation with numerical method. We will deal with two problems, one for binding state, another for scattering. The potential we adopt is finite potential well.
 
 Instead of working with differential form of Schrödinger equation, we use the integral form [[1]](#id1), namely,
@@ -24,21 +24,21 @@ $$
 where $x_i$ and $w_i$ are integration points and weights, respectively. with the help of this formula, we rewrite the eqaution as follows:
 
 $$
-    \psi(x) \approx \phi_k(x) + \frac{-im}{2k} \sum_j^N\left( e^{ik|x-x_j|} V(x_j) \psi(x_j) \right)w_j. 
+    \psi(x) \approx \phi_k(x) + \frac{-im}{k} \sum_j^N\left( e^{ik|x-x_j|} V(x_j) \psi(x_j) \right)w_j. 
 $$
 
 To implement a numerical calculation, the position $x$ will be discretized to a set of values $x_i$. These points also are chosen to be same integration points. This leads to a set of $N$ coupled equations in $N$ unknowns(if the question is about binding state, we will have $N+1$ unkowns), i.e.,
 
 $$
-    \psi(x_i) \approx \phi(x_i) + \frac{-im}{2k}  \sum_j^N\left( e^{ik|x_i-x_j|} V(x_j) \psi(x_j) \right)w_j \quad (x_i=1,\ 2,\ 3,\cdots,\ N).
+    \psi(x_i) \approx \phi(x_i) + \frac{-im}{k}  \sum_j^N\left( e^{ik|x_i-x_j|} V(x_j) \psi(x_j) \right)w_j\ (x_i=1,\ 2,\ 3,\cdots,\ N).
 $$
 
 As a concrete example, for $N=2$, we have two simultaneous linear equations, namely,
 
 $$
 \begin{aligned}
-   \psi(x_1) &= \phi(x_1) + \frac{-im}{2k}  \left( e^{ik|x_1-x_1|} V(x_1) \psi(x_1) + e^{ik|x_1-x_2|} V(x_2) \psi(x_2) \right) \\
-   \psi(x_2) &= \phi(x_2) + \frac{-im}{2k}  \left( e^{ik|x_2-x_1|} V(x_1) \psi(x_1) + e^{ik|x_2-x_2|} V(x_2) \psi(x_2) \right),
+   \psi(x_1) &= \phi(x_1) + \frac{-im}{k}  \left( e^{ik|x_1-x_1|} V(x_1) \psi(x_1) + e^{ik|x_1-x_2|} V(x_2) \psi(x_2) \right) \\
+   \psi(x_2) &= \phi(x_2) + \frac{-im}{k}  \left( e^{ik|x_2-x_1|} V(x_1) \psi(x_1) + e^{ik|x_2-x_2|} V(x_2) \psi(x_2) \right),
 \end{aligned}
 $$
 
@@ -84,6 +84,42 @@ $$
     [\psi] = (I-D)^{-1} [\phi].
 $$
 
+The ground state energies and resonace energies as ploes can be determined by $\det(I-D)=0$. we get these poles at next two sections.
+
+## Ground state
+
+For bound state, the energy $E$ is less than 0. In order to see the positions of poles, we plot $\det(I-D)$ at energy range $(-20, 0)$ eV. Interestingly, for $E<0$, the $\det(I-D)$'s are real. The figure is shown following.
+
+![](./figs/detD_E%3C0.png)
+
+From the figure, we can see that there are 6 zeros of $\det(I-D)$. The exact values of them are shown as follows.
+
+| gs       |
+|----------|
+| $-3.55$  |
+| $-8.32$  |
+| $-12.44$ |
+| $-15.71$ |
+| $-18.0$  |
+| $-19.59$ |
+
+## Resonance state
+
+For resonance state, the pole will have a imaginary part. we let $|1/\det(I-D)|$ be $z$ axis. Then we plot the contour of $|\det(I-D)|$, which is shown as follows.
+
+![](./figs/inverse_abs_det.png)
+
+There are 7 poles from the figure. The values of them  are list in the table.
+
+| Resonance      |
+|----------------|
+| $64.01-12.15i$ |
+| $50.5-10.3i$   |
+| $38.17-8.5i$   |
+| $27.04-6.74i$  |
+| $17.1-5.0i$    |
+| $8.34-3.24i$   |
+| $0.78-1.01i$   |
 
 
 
