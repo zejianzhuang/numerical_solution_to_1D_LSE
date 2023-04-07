@@ -121,7 +121,7 @@ There are 7 poles from the figure. The values of them  are list in the table.
 | $8.34-3.24i$   |
 | $0.78-1.01i$   |
 
-Scattering theory tell us that in complex energy plane, a pole corresponding to bound state is located at imaginary axis, while a pole for resonance is located at complex energy plane. As you can see in the following figure.
+Scattering theory tell us that in complex energy plane, a pole corresponding to bound state is located at real axis, while a pole for resonance is located at complex energy plane. As you can see in the following figure.
 
 ![](./figs/pole_structure.png)
 
